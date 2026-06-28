@@ -25,10 +25,10 @@ int main(void)
     cout << (ng <= 30) << "\n";
     cout << (nb > 20 && nt > 2 || ng > 30 && nt > 4) << "\n";
     cout << (ng < 60 || ng < 70) << "\n";
-    cout << !(nb >= 60 || ng >= 70) << "\n";
-    cout << (nb > 10 + ng) << "\n";
+    cout << !(nb >= 60 && ng >= 70) << "\n";
+    cout << (nb == 10 + ng) << "\n";
     cout << (nb - ng > 10 || nt > 5) << "\n";
-    cout << (nb > 10 + ng || ng > 15 + nb) << "\n";
+    cout << (nb == 10 + ng || ng == 15 + nb) << "\n";
 
     return 0;
 }
