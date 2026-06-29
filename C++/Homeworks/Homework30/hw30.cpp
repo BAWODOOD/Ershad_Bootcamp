@@ -22,6 +22,10 @@ int main(void)
           {
             cout << num1 << endl;
           }
+          else if (num2 < num3)
+          {
+               cout << num3 << endl;
+          }
      }
      else if (num2 > num3)
      {
@@ -35,6 +39,6 @@ int main(void)
      {
           cout << -1 << endl;
      }
-   
+
      return 0;
 }
