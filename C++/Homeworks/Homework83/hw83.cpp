@@ -2,85 +2,63 @@
  * AUTHOR: BANDAR KHALED SALEH BAWODOOD 
  * DATE: 19/7/2026
  *
- * Subject #: 
- * Problem #: 
+ * Subject #11: Functions 
+ * Problem 1: Max of 6 numbers
  * 
  * Description: 
- * Read 3 numbers: DEPTH, ROWS, COLS representing the dimensions of a 3D array.
- * Then read an integer (either 1 or 2) representing the conversion type:
- *   - 1: Convert 3D position to 1D index.
- *   - 2: Convert 1D index to 3D position.
+ * Write a function that reads 6 numbers and compute their maximum. Create 
+ * the following functions:
+ *   - max(int a, int b, int c)
+ *   - max(int a, int b, int c, int d)
+ *   - max(int a, int b, int c, int d, int e)
+ *   - max(int a, int b, int c, int d, int e, int f)
  *
- * If the input is 1:
- *   Read 3 integers d, r, c (depth, row, col) and convert them to a position 
- *   in a 1D array.
- * 
- * If the input is 2:
- *   Read 1 integer (position in 1D array), then convert it to a 3D array 
- *   position (d, r, c).
- *
- * Challenge / Note: 
- * Try to generalize the math formula used here so it could work for higher 
- * dimensions (e.g., a 6D array).
- *
- * Example Inputs & Outputs:
- * 3 4 5  1  1 0 0    => 20
- * 3 4 5  2  20       => 1 0 0
- * 3 4 5  1  1 1 1    => 26
- * 3 4 5  1  2 3 2    => 57
- * 3 4 5  1  2 0 0    => 40
- * 3 4 5  2  59       => 2 3 4
- *
- * Hint from slide:
- * You can visualize the index mapping using nested loops:
- * int idx = 0;
- * for (int dep = 0; dep < DEPTH; ++dep)
- *     for (int row = 0; row < ROWS; ++row)
- *         for (int col = 0; col < COLS; ++col)
- *             cout << idx++ << " = " << dep << " " << row << " " << col << "\n";
+ * Hint: 
+ * How can max(int a, int b, int c, int d) utilize max(int a, int b, int c)? 
+ * and so on...
  */
 
 #include <iostream>
 
 using namespace std;
 
+int max(int a, int b, int c)
+{
+    if (a > b && a > c)
+    {
+        return a;
+    }
+    else if(b > c)
+    {
+        return b;
+    }
+
+    return c;
+}
+
+int max(int a, int b, int c, int d)
+{
+    return (a > max(b, c, d)) ? a : max(b,c,d);
+}
+
+int max(int a, int b, int c, int d, int e)
+{
+    return (a > max(b, c, d, e)) ? a : max(b,c,d, e);
+}
+
+int max(int a, int b, int c, int d, int e, int f)
+{
+    return (a > max(b, c, d, e, f)) ? a : max(b,c,d, e, f);
+}
+
 int main(void)
 {
-    int depth = 0, row = 0, column = 0;
+    int max1 = max(1, 2, 3);
+    int max2 = max(1, 2, 3, 4);
+    int max3 = max(9, 2, 3, 4, 5);
+    int max4 = max(1, 2, 3, 4, 5, 6);
 
-    cin >> depth >> row >> column;
-
-    int conversion;
-    cin >> conversion;
-
-    if (conversion == 1)
-    {
-        int d = 0, r = 0, c = 0;
-        cin >> d >> r >> c;
-
-        int D1_pos = (d * (row * column)) + column * r + c;
-        
-        cout << D1_pos << endl;
-    }
-    else if (conversion == 2)
-    {
-        int d = 0, r = 0, c = 0;
-        int d1_pos = 0;
-
-        cin >> d1_pos;
-
-        d = d1_pos / (row * column);
-        // d1_pos -= (row * column) * d;
-        d1_pos = d1_pos % (row * column);
-
-        r = d1_pos / column;
-        // d1_pos -= column * r;
-        d1_pos = d1_pos % column;
-
-        c = d1_pos;
-        
-        cout << d << " " << r << " " << c << endl;
-    }
-
+    cout << max1 << " " << max2 << " " << max3 << " " << max4 << endl;
+   
     return 0;
 }
